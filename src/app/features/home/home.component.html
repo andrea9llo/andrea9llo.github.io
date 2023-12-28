@@ -1,0 +1,60 @@
+<div class="container text-center p-4">
+  <div class="h2 mt-2 text-white">FOOTBALL UPDATES</div>
+  <mat-card class="d-flex justify-content-between mt-3 w-50 m-auto">
+    <button [id]="league.attribute" *ngFor="let league of leagues" (click)="getDataLeague(league)" mat-button>{{league.label}}</button>
+  </mat-card>
+
+  <mat-card *ngIf="dataSource[0]" class="mt-5  w-75 m-auto">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="rank">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"> {{element.rank}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="logo">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+         <img class="logo" src="{{element.team?.logo}}" alt="">
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell class="cursor" (click)="detailResults(element)" *matCellDef="let element"> {{element.team?.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="games">
+        <th mat-header-cell *matHeaderCellDef>Games</th>
+        <td mat-cell *matCellDef="let element"> {{element.all?.played}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="win">
+        <th mat-header-cell *matHeaderCellDef>W</th>
+        <td mat-cell *matCellDef="let element"> {{element.all?.win}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lose">
+        <th mat-header-cell *matHeaderCellDef>L</th>
+        <td mat-cell *matCellDef="let element"> {{element.all?.lose}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="draw">
+        <th mat-header-cell *matHeaderCellDef>D</th>
+        <td mat-cell *matCellDef="let element"> {{element.all?.draw}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="goalsDiff">
+        <th mat-header-cell *matHeaderCellDef>Goals Difference</th>
+        <td mat-cell *matCellDef="let element"> {{element.goalsDiff}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="points">
+        <th mat-header-cell *matHeaderCellDef>Points</th>
+        <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+</div>

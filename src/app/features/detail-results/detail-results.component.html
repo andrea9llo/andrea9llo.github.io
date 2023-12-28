@@ -1,0 +1,13 @@
+<div class="container text-center p-4">
+  <div class="h2 mt-2 text-white">Last 10 Game</div>
+  <mat-card class="mt-5  w-50 m-auto">
+    <div class="text-center">
+      <div *ngFor="let game of dataLastGame" class="d-flex align-items-center justify-content-center mt-4">
+        <img class="logo me-2" src="{{game.teams.home.logo}}" alt="">
+        <div>{{game.teams.home.name}} {{game.goals.home}} - {{game.goals.away}} {{game.teams.away.name}}</div>
+        <img class="logo ms-2" src="{{game.teams.away.logo}}" alt="">
+      </div>
+    </div>
+    <button class="mt-4" mat-raised-button color="primary" (click)="backClicked()">Back</button>
+  </mat-card>
+</div>
